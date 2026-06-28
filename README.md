@@ -117,3 +117,14 @@ to access college information through an intelligent chatbot and a secure web ap
 
 **Progress:** 2 / 30 Days Completed (≈7%)
 
+## Current Progress
+
+### ✅ Day 3 Completed
+
+- Created MySQL database
+- Created database/schema.sql
+- Designed and implemented Users table
+- Learned SQL constraints (PRIMARY KEY, UNIQUE, NOT NULL)
+- Tested INSERT and SELECT queries
+- Verified table structure using DESCRIBE
+
