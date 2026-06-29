@@ -127,4 +127,11 @@ to access college information through an intelligent chatbot and a secure web ap
 - Learned SQL constraints (PRIMARY KEY, UNIQUE, NOT NULL)
 - Tested INSERT and SELECT queries
 - Verified table structure using DESCRIBE
+## ✅ Day 4 Completed
 
+- Learned Primary Key
+- Learned Foreign Key
+- Learned One-to-One Relationship
+- Created Students Table
+- Connected Students Table with Users Table
+- Tested Database Relationships
