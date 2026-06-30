@@ -146,3 +146,18 @@ to access college information through an intelligent chatbot and a secure web ap
 
 - Updated schema.sql
 - Pushed latest database changes
+
+- ## ✅ Day 5 Completed
+
+### Database
+
+- Learned Database Normalization
+- Created Departments table
+- Inserted sample departments
+- Prepared database for scalable design
+
+### Learning
+
+- Database Normalization
+- Data Redundancy
+- Production Database Design
