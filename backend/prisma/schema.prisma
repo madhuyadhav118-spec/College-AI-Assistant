@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model departments {
+  department_id   Int        @id @default(autoincrement())
+  department_name String     @unique(map: "department_name") @db.VarChar(100)
+  department_code String     @unique(map: "department_code") @db.VarChar(20)
+  hod_name        String?    @db.VarChar(100)
+  email           String?    @db.VarChar(100)
+  phone           String?    @db.VarChar(15)
+  building_name   String?    @db.VarChar(100)
+  created_at      DateTime?  @default(now()) @db.Timestamp(0)
+  updated_at      DateTime?  @default(now()) @db.Timestamp(0)
+  faculty         faculty[]
+  students        students[]
+}
+
+model faculty {
+  faculty_id    Int             @id @default(autoincrement())
+  user_id       Int
+  employee_id   String          @unique(map: "employee_id") @db.VarChar(30)
+  department    String          @db.VarChar(100)
+  designation   String?         @db.VarChar(100)
+  qualification String?         @db.VarChar(100)
+  experience    Int?
+  joining_date  DateTime?       @db.Date
+  office_phone  String?         @db.VarChar(15)
+  status        faculty_status? @default(ACTIVE)
+  created_at    DateTime?       @default(now()) @db.Timestamp(0)
+  updated_at    DateTime?       @default(now()) @db.Timestamp(0)
+  department_id Int?
+  users         users           @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "faculty_ibfk_1")
+  departments   departments?    @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_faculty_department")
+
+  @@index([department_id], map: "fk_faculty_department")
+  @@index([user_id], map: "user_id")
+}
+
+model students {
+  student_id       Int              @id @default(autoincrement())
+  user_id          Int
+  roll_number      String           @unique(map: "roll_number") @db.VarChar(30)
+  admission_number String?          @unique(map: "admission_number") @db.VarChar(30)
+  department       String           @db.VarChar(100)
+  year             Int
+  semester         Int
+  section          String?          @db.VarChar(10)
+  gender           String?          @db.VarChar(10)
+  date_of_birth    DateTime?        @db.Date
+  address          String?          @db.Text
+  parent_name      String?          @db.VarChar(100)
+  parent_phone     String?          @db.VarChar(15)
+  blood_group      String?          @db.VarChar(5)
+  admission_date   DateTime?        @db.Date
+  status           students_status? @default(ACTIVE)
+  created_at       DateTime?        @default(now()) @db.Timestamp(0)
+  updated_at       DateTime?        @default(now()) @db.Timestamp(0)
+  department_id    Int?
+  departments      departments?     @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_student_department")
+  users            users            @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "students_ibfk_1")
+
+  @@index([department_id], map: "fk_student_department")
+  @@index([user_id], map: "user_id")
+}
+
+model users {
+  user_id       Int        @id @default(autoincrement())
+  full_name     String     @db.VarChar(100)
+  email         String     @unique(map: "email") @db.VarChar(100)
+  password      String     @db.VarChar(255)
+  role          users_role
+  phone         String?    @db.VarChar(15)
+  profile_image String?    @db.VarChar(255)
+  is_active     Boolean?   @default(true)
+  last_login    DateTime?  @db.Timestamp(0)
+  created_at    DateTime?  @default(now()) @db.Timestamp(0)
+  updated_at    DateTime?  @default(now()) @db.Timestamp(0)
+  faculty       faculty[]
+  students      students[]
+}
+
+enum users_role {
+  ADMIN
+  FACULTY
+  STUDENT
+}
+
+enum faculty_status {
+  ACTIVE
+  INACTIVE
+}
+
+enum students_status {
+  ACTIVE
+  GRADUATED
+  SUSPENDED
+}
