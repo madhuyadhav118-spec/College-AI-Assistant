@@ -526,3 +526,53 @@ Authentication Module:
 -ADMIN and FACULTY can View Faculty Details
 -Tested all Faculty APIs successfully using Thunder Client
 -Verified Prisma Relations between Users, Faculty and Departments
+
+
+##  ✅ Day 24 – Department Management Module
+
+### 🎯 Objective
+
+Implemented the complete Department Management Module with secure role-based access using JWT Authentication and Authorization.
+
+### ✅ Completed Tasks
+
+* Created Department Service Layer
+* Created Department Controller
+* Created Department Routes
+* Implemented Department CRUD Operations
+* Protected Department APIs using JWT Authentication
+* Implemented Role-Based Authorization
+* ADMIN can Create, Update and Delete Departments
+* ADMIN, FACULTY and STUDENT can View Department Details
+* Tested all Department APIs successfully using Thunder Client
+* Verified Prisma Integration with Departments Table
+
+### 📌 APIs Implemented
+
+#### Department APIs
+
+* GET /departments
+* GET /departments/:id
+* POST /departments
+* PUT /departments/:id
+* DELETE /departments/:id
+
+### 🔐 Security Implemented
+
+* JWT Authentication Middleware
+* Role-Based Authorization Middleware
+* Protected Department Routes
+
+### 🧪 Testing
+
+Successfully tested:
+
+* View All Departments
+* View Single Department
+* Create Department
+* Update Department
+* Delete Department
+
+### 📊 Status
+
+✅ Department Management Module Completed Successfully
