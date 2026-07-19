@@ -6,7 +6,7 @@ import {
     updateFaculty,
     deleteFaculty
 } from "../services/faculty.service";
-console.log("FACULTY CONTROLLER LOADED");
+//console.log("FACULTY CONTROLLER LOADED");
 
 // Get all faculty
 export const getFaculty = async (req: Request, res: Response) => {
