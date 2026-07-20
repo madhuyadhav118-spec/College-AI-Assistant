@@ -576,3 +576,34 @@ Successfully tested:
 ### 📊 Status
 
 ✅ Department Management Module Completed Successfully
+
+## 📅 Day 25 - Attendance Management Module
+
+### ✅ Completed Features
+
+- Created Attendance Module
+- Implemented Attendance CRUD APIs
+- Connected Attendance with Students and Faculty
+- Integrated Prisma ORM
+- Protected APIs using JWT Authentication
+- Implemented Role-Based Authorization
+- Successfully tested all Attendance APIs using Thunder Client
+
+### Attendance APIs
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /attendance | Get all attendance records |
+| GET | /attendance/:id | Get attendance by ID |
+| POST | /attendance | Create attendance record |
+| PUT | /attendance/:id | Update attendance |
+| DELETE | /attendance/:id | Delete attendance |
+
+### Relationships
+
+- Attendance → Student (Many-to-One)
+- Attendance → Faculty (Many-to-One)
+
+### Status
+
+✅ Attendance Module Completed
