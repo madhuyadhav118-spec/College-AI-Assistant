@@ -51,8 +51,8 @@ export const getOneFaculty = async (req: Request, res: Response) => {
 
 // Create faculty
 export const addFaculty = async (req: Request, res: Response) => {
-    console.log("ADD FACULTY API CALLED");
-    console.log(req.body);
+    //console.log("ADD FACULTY API CALLED");
+   // console.log(req.body);
     try {
         
         const faculty = await createFaculty(req.body);
@@ -67,7 +67,7 @@ export const addFaculty = async (req: Request, res: Response) => {
 
         res.status(500).json({
             message: "Failed to create faculty",
-            error: error instanceof Error ? error.message : error
+           // error: error instanceof Error ? error.message : error
         });
     }
 };
