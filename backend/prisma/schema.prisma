@@ -35,6 +35,7 @@ model faculty {
   created_at    DateTime?       @default(now()) @db.Timestamp(0)
   updated_at    DateTime?       @default(now()) @db.Timestamp(0)
   department_id Int?
+  attendance    attendance[]
   users         users           @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "faculty_ibfk_1")
   departments   departments?    @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_faculty_department")
 
@@ -62,6 +63,7 @@ model students {
   created_at       DateTime?        @default(now()) @db.Timestamp(0)
   updated_at       DateTime?        @default(now()) @db.Timestamp(0)
   department_id    Int?
+  attendance       attendance[]
   departments      departments?     @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_student_department")
   users            users            @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "students_ibfk_1")
 
@@ -85,6 +87,22 @@ model users {
   students      students[]
 }
 
+model attendance {
+  attendance_id   Int                @id @default(autoincrement())
+  student_id      Int
+  faculty_id      Int
+  attendance_date DateTime           @db.Date
+  status          attendance_status? @default(PRESENT)
+  remarks         String?            @db.VarChar(255)
+  created_at      DateTime?          @default(now()) @db.Timestamp(0)
+  updated_at      DateTime?          @default(now()) @db.Timestamp(0)
+  faculty         faculty            @relation(fields: [faculty_id], references: [faculty_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_faculty")
+  students        students           @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_attendance_student")
+
+  @@index([faculty_id], map: "fk_attendance_faculty")
+  @@index([student_id], map: "fk_attendance_student")
+}
+
 enum users_role {
   ADMIN
   FACULTY
@@ -100,4 +118,10 @@ enum students_status {
   ACTIVE
   GRADUATED
   SUSPENDED
+}
+
+enum attendance_status {
+  PRESENT
+  ABSENT
+  LATE
 }

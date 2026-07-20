@@ -181,3 +181,34 @@ ALTER TABLE faculty
 ADD CONSTRAINT fk_faculty_department
 FOREIGN KEY(department_id)
 REFERENCES departments(department_id);
+
+-- ============================================
+--  ATTENDANCE TABLE
+-- ============================================
+
+CREATE TABLE attendance (
+    attendance_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    student_id INT NOT NULL,
+
+    faculty_id INT NOT NULL,
+
+    attendance_date DATE NOT NULL,
+
+    status ENUM('PRESENT','ABSENT','LATE') DEFAULT 'PRESENT',
+
+    remarks VARCHAR(255),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_attendance_student
+        FOREIGN KEY(student_id)
+        REFERENCES students(student_id),
+
+    CONSTRAINT fk_attendance_faculty
+        FOREIGN KEY(faculty_id)
+        REFERENCES faculty(faculty_id)
+);

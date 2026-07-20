@@ -63,11 +63,11 @@ export const addFaculty = async (req: Request, res: Response) => {
         });
 
     } catch (error) {
-        console.error("Faculty Error:", error);
+        console.error(error);
 
         res.status(500).json({
             message: "Failed to create faculty",
-            error
+            error: error instanceof Error ? error.message : error
         });
     }
 };
