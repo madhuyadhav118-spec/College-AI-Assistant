@@ -212,3 +212,32 @@ CREATE TABLE attendance (
         FOREIGN KEY(faculty_id)
         REFERENCES faculty(faculty_id)
 );
+
+-- ===========================================
+-- SUBJECTS TABLE REATED TO DEPARTMENT TABLE
+-- ===========================================
+
+CREATE TABLE subjects (
+    subject_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    subject_name VARCHAR(100) NOT NULL,
+
+    subject_code VARCHAR(20) UNIQUE NOT NULL,
+
+    department_id INT NOT NULL,
+
+    semester INT NOT NULL,
+
+    year INT NOT NULL,
+
+    credits INT NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_subject_department
+    FOREIGN KEY (department_id)
+    REFERENCES departments(department_id)
+);

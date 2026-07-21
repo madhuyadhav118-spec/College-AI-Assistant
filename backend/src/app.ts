@@ -5,6 +5,7 @@ import authRoutes from "./routes/auth.routes";
 import facultyRoutes from "./routes/faculty.routes";
 import departmentRoutes from "./routes/department.routes";
 import attendanceRoutes from "./routes/attendance.routes";
+import subjectRoutes from "./routes/subject.routes";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use("/auth", authRoutes);
 app.use("/faculty", facultyRoutes);
 app.use("/departments", departmentRoutes);
 app.use("/attendance", attendanceRoutes);
+app.use("/subjects", subjectRoutes);
 
 app.get("/", (req, res) => {
     res.send("College AI Assistant Backend Running");
