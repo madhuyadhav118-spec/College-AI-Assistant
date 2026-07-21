@@ -607,3 +607,33 @@ Successfully tested:
 ### Status
 
 ✅ Attendance Module Completed
+
+## 📅 Day 26 - Subject Management Module
+
+### ✅ Completed Features
+
+- Created Subjects Database Table
+- Connected Subjects with Departments
+- Added Prisma ORM Model
+- Implemented Subject CRUD APIs
+- Protected APIs using JWT Authentication
+- Implemented Role-Based Authorization
+- Successfully Tested Subject APIs using Thunder Client
+
+### APIs Implemented
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /subjects | Get all subjects |
+| GET | /subjects/:id | Get subject by ID |
+| POST | /subjects | Create subject |
+| PUT | /subjects/:id | Update subject |
+| DELETE | /subjects/:id | Delete subject |
+
+### Relationships
+
+Department (1) ------> (Many) Subjects
+
+### Status
+
+✅ Subject Management Module Completed
