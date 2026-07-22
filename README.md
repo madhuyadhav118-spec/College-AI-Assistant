@@ -632,6 +632,36 @@ Successfully tested:
 
 ### Relationships
 
+## 📅 Day 27 - Course Management Module
+
+### ✅ Completed Features
+
+- Created Courses Database Table
+- Connected Courses with Departments
+- Added Prisma ORM Model
+- Implemented Course CRUD APIs
+- Protected APIs using JWT Authentication
+- Implemented Role-Based Authorization
+- Successfully Tested Course APIs using Thunder Client
+
+### APIs Implemented
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /courses | Get all courses |
+| GET | /courses/:id | Get course by ID |
+| POST | /courses | Create course |
+| PUT | /courses/:id | Update course |
+| DELETE | /courses/:id | Delete course |
+
+### Relationships
+
+Course (1) ------> (Many) Departments
+
+### Status
+
+✅ Course Management Module Completed
+
 Department (1) ------> (Many) Subjects
 
 ### Status
