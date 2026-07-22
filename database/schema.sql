@@ -241,3 +241,22 @@ CREATE TABLE subjects (
     FOREIGN KEY (department_id)
     REFERENCES departments(department_id)
 );
+
+-- ==========================================
+-- COURSES TABLE (Ex:B-Tech ,MBA, Medical)
+-- ==========================================
+
+CREATE TABLE courses (
+    course_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    course_name VARCHAR(100) NOT NULL,
+
+    course_code VARCHAR(20) UNIQUE NOT NULL,
+
+    duration_years INT NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+);
