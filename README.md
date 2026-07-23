@@ -667,3 +667,77 @@ Department (1) ------> (Many) Subjects
 ### Status
 
 ✅ Subject Management Module Completed
+
+# 📅 Day 28 - Timetable Management Module Completed
+
+## ✅ Work Completed
+
+Today I implemented the complete **Timetable Management Module** for the College AI Assistant backend.
+
+### Database
+
+- Created `timetable` table
+- Added foreign key relationship with:
+  - Subjects
+  - Faculty
+  - Departments
+
+### Prisma
+
+- Updated Prisma schema using `prisma db pull`
+- Generated latest Prisma Client
+
+### Backend
+
+Implemented complete CRUD APIs:
+
+- Get All Timetable
+- Get Timetable By ID
+- Create Timetable
+- Update Timetable
+- Delete Timetable
+
+### Routes
+
+Added new routes:
+
+```
+/timetable
+```
+
+### Security
+
+Implemented Role Based Access Control:
+
+- ADMIN
+  - Create Timetable
+  - Update Timetable
+  - Delete Timetable
+
+- FACULTY
+  - View Timetable
+
+- STUDENT
+  - View Timetable
+
+### API Testing
+
+Successfully tested using Thunder Client:
+
+- Login
+- Create Timetable
+- Get All Timetable
+- Get Timetable By ID
+- Update Timetable
+- Delete Timetable
+
+### Learning Outcome
+
+Today I learned:
+
+- Managing relational data using Prisma
+- Working with multiple foreign keys
+- Handling TIME fields in Prisma
+- Building complete CRUD APIs
+- Testing secured APIs using JWT Authentication
+- Debugging Prisma DateTime and TIME conversion issues
