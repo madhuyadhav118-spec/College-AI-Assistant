@@ -260,3 +260,46 @@ CREATE TABLE courses (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ON UPDATE CURRENT_TIMESTAMP
 );
+
+-- ========================================
+-- TIME TABLE TABLE
+-- =========================================
+
+CREATE TABLE timetable (
+    timetable_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    subject_id INT NOT NULL,
+
+    faculty_id INT NOT NULL,
+
+    department_id INT NOT NULL,
+
+    day_of_week ENUM(
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday'
+    ) NOT NULL,
+
+    start_time TIME NOT NULL,
+
+    end_time TIME NOT NULL,
+
+    room_number VARCHAR(20),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (subject_id)
+    REFERENCES subjects(subject_id),
+
+    FOREIGN KEY (faculty_id)
+    REFERENCES faculty(faculty_id),
+
+    FOREIGN KEY (department_id)
+    REFERENCES departments(department_id)
+);
