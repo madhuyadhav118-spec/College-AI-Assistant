@@ -28,16 +28,18 @@ model departments {
 }
 
 model subjects {
-  subject_id    Int         @id @default(autoincrement())
-  subject_name  String      @db.VarChar(100)
-  subject_code  String      @unique(map: "subject_code") @db.VarChar(20)
+  subject_id    Int            @id @default(autoincrement())
+  subject_name  String         @db.VarChar(100)
+  subject_code  String         @unique(map: "subject_code") @db.VarChar(20)
   department_id Int
   semester      Int
   year          Int
   credits       Int
-  created_at    DateTime?   @default(now()) @db.Timestamp(0)
-  updated_at    DateTime?   @default(now()) @db.Timestamp(0)
-  departments   departments @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_subject_department")
+  created_at    DateTime?      @default(now()) @db.Timestamp(0)
+  updated_at    DateTime?      @default(now()) @db.Timestamp(0)
+  examinations  examinations[]
+  results       results[]
+  departments   departments    @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_subject_department")
   timetable     timetable[]
 
   @@index([department_id], map: "fk_subject_department")
@@ -97,6 +99,7 @@ model students {
   updated_at       DateTime?        @default(now()) @db.Timestamp(0)
   department_id    Int?
   attendance       attendance[]
+  results          results[]
   departments      departments?     @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_student_department")
   users            users            @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "students_ibfk_1")
 
@@ -156,6 +159,44 @@ model timetable {
   @@index([subject_id], map: "subject_id")
 }
 
+model examinations {
+  exam_id     Int                    @id @default(autoincrement())
+  subject_id  Int
+  exam_name   String                 @db.VarChar(100)
+  exam_type   examinations_exam_type
+  exam_date   DateTime               @db.Date
+  start_time  DateTime               @db.Time(0)
+  end_time    DateTime               @db.Time(0)
+  venue       String?                @db.VarChar(100)
+  total_marks Int?                   @default(100)
+  created_at  DateTime?              @default(now()) @db.Timestamp(0)
+  updated_at  DateTime?              @default(now()) @db.Timestamp(0)
+  subjects    subjects               @relation(fields: [subject_id], references: [subject_id], onDelete: NoAction, onUpdate: NoAction, map: "examinations_ibfk_1")
+  results     results[]
+
+  @@index([subject_id], map: "subject_id")
+}
+
+model results {
+  result_id      Int                    @id @default(autoincrement())
+  student_id     Int
+  subject_id     Int
+  exam_id        Int
+  marks_obtained Decimal                @db.Decimal(5, 2)
+  grade          String?                @db.VarChar(5)
+  result_status  results_result_status? @default(PASS)
+  remarks        String?                @db.VarChar(255)
+  created_at     DateTime?              @default(now()) @db.Timestamp(0)
+  updated_at     DateTime?              @default(now()) @db.Timestamp(0)
+  examinations   examinations           @relation(fields: [exam_id], references: [exam_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_result_exam")
+  students       students               @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_result_student")
+  subjects       subjects               @relation(fields: [subject_id], references: [subject_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_result_subject")
+
+  @@index([exam_id], map: "fk_result_exam")
+  @@index([student_id], map: "fk_result_student")
+  @@index([subject_id], map: "fk_result_subject")
+}
+
 enum users_role {
   ADMIN
   FACULTY
@@ -186,4 +227,17 @@ enum timetable_day_of_week {
   Thursday
   Friday
   Saturday
+}
+
+enum examinations_exam_type {
+  MID1
+  MID2
+  SEMESTER
+  LAB
+  PRACTICAL
+}
+
+enum results_result_status {
+  PASS
+  FAIL
 }

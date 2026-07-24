@@ -303,3 +303,74 @@ CREATE TABLE timetable (
     FOREIGN KEY (department_id)
     REFERENCES departments(department_id)
 );
+
+-- =================================================
+-- EXAMINATION TABLE (MID-1,MID-2, SEMESTER AND LAB)
+-- =================================================
+
+CREATE TABLE examinations (
+
+    exam_id INT AUTO_INCREMENT PRIMARY KEY,
+
+    subject_id INT NOT NULL,
+
+    exam_name VARCHAR(100) NOT NULL,
+
+    exam_type ENUM(
+        'MID1',
+        'MID2',
+        'SEMESTER',
+        'LAB',
+        'PRACTICAL'
+    ) NOT NULL,
+
+    exam_date DATE NOT NULL,
+
+    start_time TIME NOT NULL,
+
+    end_time TIME NOT NULL,
+
+    venue VARCHAR(100),
+
+    total_marks INT DEFAULT 100,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY(subject_id)
+    REFERENCES subjects(subject_id)
+
+);
+
+-- ==========================================
+-- RESULTS TABLE
+-- ==========================================
+CREATE TABLE results (
+    result_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    student_id INT NOT NULL,
+    subject_id INT NOT NULL,
+    exam_id INT NOT NULL,
+
+    marks_obtained DECIMAL(5,2) NOT NULL,
+    grade VARCHAR(5),
+    result_status ENUM('PASS','FAIL') DEFAULT 'PASS',
+    remarks VARCHAR(255),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_result_student
+        FOREIGN KEY (student_id)
+        REFERENCES students(student_id),
+
+    CONSTRAINT fk_result_subject
+        FOREIGN KEY (subject_id)
+        REFERENCES subjects(subject_id),
+
+    CONSTRAINT fk_result_exam
+        FOREIGN KEY (exam_id)
+        REFERENCES examinations(exam_id)
+);
