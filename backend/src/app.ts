@@ -10,6 +10,7 @@ import courseRoutes from "./routes/course.routes";
 import timetableRoutes from "./routes/timetable.routes";
 import examinationRoutes from "./routes/examination.routes";
 import resultRoutes from "./routes/result.routes";
+import feeRoutes from "./routes/fee.routes";
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use("/courses", courseRoutes);
 app.use("/timetable", timetableRoutes);
 app.use("/examinations", examinationRoutes);
 app.use("/results", resultRoutes);
+app.use("/fees", feeRoutes);
 
 app.get("/", (req, res) => {
     res.send("College AI Assistant Backend Running");

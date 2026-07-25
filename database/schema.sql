@@ -374,3 +374,32 @@ CREATE TABLE results (
         FOREIGN KEY (exam_id)
         REFERENCES examinations(exam_id)
 );
+
+-- ============================================
+-- FEES TABLE
+-- ============================================
+
+CREATE TABLE fees (
+    fee_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    student_id INT NOT NULL,
+
+    academic_year VARCHAR(20) NOT NULL,
+    semester INT NOT NULL,
+
+    total_fee DECIMAL(10,2) NOT NULL,
+    amount_paid DECIMAL(10,2) DEFAULT 0,
+    balance DECIMAL(10,2) NOT NULL,
+
+    due_date DATE,
+    payment_status ENUM('PENDING','PARTIAL','PAID') DEFAULT 'PENDING',
+
+    remarks VARCHAR(255),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_fee_student
+        FOREIGN KEY (student_id)
+        REFERENCES students(student_id)
+);
