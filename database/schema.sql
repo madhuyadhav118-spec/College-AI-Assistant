@@ -403,3 +403,72 @@ CREATE TABLE fees (
         FOREIGN KEY (student_id)
         REFERENCES students(student_id)
 );
+
+-- ===============================================
+-- NOTICES TABLE
+-- ===============================================
+
+CREATE TABLE notices (
+
+    notice_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    title VARCHAR(150) NOT NULL,
+
+    description TEXT NOT NULL,
+
+    audience ENUM(
+        'ALL',
+        'STUDENT',
+        'FACULTY'
+    ) DEFAULT 'ALL',
+
+    priority ENUM(
+        'LOW',
+        'MEDIUM',
+        'HIGH'
+    ) DEFAULT 'MEDIUM',
+
+    publish_date DATE NOT NULL,
+
+    expiry_date DATE,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- ===============================================
+-- ASSIGNMENTS TABLE
+-- ===============================================
+
+CREATE TABLE assignments (
+
+    assignment_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    subject_id INT NOT NULL,
+
+    faculty_id INT NOT NULL,
+
+    title VARCHAR(150) NOT NULL,
+
+    description TEXT,
+
+    due_date DATE NOT NULL,
+
+    max_marks INT DEFAULT 100,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_assignment_subject
+        FOREIGN KEY(subject_id)
+        REFERENCES subjects(subject_id),
+
+    CONSTRAINT fk_assignment_faculty
+        FOREIGN KEY(faculty_id)
+        REFERENCES faculty(faculty_id)
+
+);
