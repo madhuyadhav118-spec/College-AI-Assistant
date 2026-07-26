@@ -799,3 +799,40 @@ Completed:
 
 Status:
 - Completed Successfully
+
+## ✅ Day 32 Completed
+
+### Notice Board Module
+
+Completed:
+
+- Notices Table
+- Prisma Notice Model
+- Notice Service
+- Notice Controller
+- Notice Routes
+- CRUD APIs
+- Role-Based Authorization
+- Thunder Client Testing
+
+Status:
+- Completed Successfully
+
+---
+
+### Assignment Management Module
+
+Completed:
+
+- Assignments Table
+- Prisma Assignment Model
+- Assignment Service
+- Assignment Controller
+- Assignment Routes
+- Subject Relationship
+- Faculty Relationship
+- CRUD APIs
+- Thunder Client Testing
+
+Status:
+- Completed Successfully
