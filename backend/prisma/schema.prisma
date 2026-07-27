@@ -81,49 +81,51 @@ model faculty {
 }
 
 model students {
-  student_id       Int              @id @default(autoincrement())
-  user_id          Int
-  roll_number      String           @unique(map: "roll_number") @db.VarChar(30)
-  admission_number String?          @unique(map: "admission_number") @db.VarChar(30)
-  department       String           @db.VarChar(100)
-  year             Int
-  semester         Int
-  section          String?          @db.VarChar(10)
-  gender           String?          @db.VarChar(10)
-  date_of_birth    DateTime?        @db.Date
-  address          String?          @db.Text
-  parent_name      String?          @db.VarChar(100)
-  parent_phone     String?          @db.VarChar(15)
-  blood_group      String?          @db.VarChar(5)
-  admission_date   DateTime?        @db.Date
-  status           students_status? @default(ACTIVE)
-  created_at       DateTime?        @default(now()) @db.Timestamp(0)
-  updated_at       DateTime?        @default(now()) @db.Timestamp(0)
-  department_id    Int?
-  attendance       attendance[]
-  fees             fees[]
-  results          results[]
-  departments      departments?     @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_student_department")
-  users            users            @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "students_ibfk_1")
+  student_id             Int                      @id @default(autoincrement())
+  user_id                Int
+  roll_number            String                   @unique(map: "roll_number") @db.VarChar(30)
+  admission_number       String?                  @unique(map: "admission_number") @db.VarChar(30)
+  department             String                   @db.VarChar(100)
+  year                   Int
+  semester               Int
+  section                String?                  @db.VarChar(10)
+  gender                 String?                  @db.VarChar(10)
+  date_of_birth          DateTime?                @db.Date
+  address                String?                  @db.Text
+  parent_name            String?                  @db.VarChar(100)
+  parent_phone           String?                  @db.VarChar(15)
+  blood_group            String?                  @db.VarChar(5)
+  admission_date         DateTime?                @db.Date
+  status                 students_status?         @default(ACTIVE)
+  created_at             DateTime?                @default(now()) @db.Timestamp(0)
+  updated_at             DateTime?                @default(now()) @db.Timestamp(0)
+  department_id          Int?
+  assignment_submissions assignment_submissions[]
+  attendance             attendance[]
+  fees                   fees[]
+  results                results[]
+  departments            departments?             @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_student_department")
+  users                  users                    @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "students_ibfk_1")
 
   @@index([department_id], map: "fk_student_department")
   @@index([user_id], map: "user_id")
 }
 
 model users {
-  user_id       Int        @id @default(autoincrement())
-  full_name     String     @db.VarChar(100)
-  email         String     @unique(map: "email") @db.VarChar(100)
-  password      String     @db.VarChar(255)
-  role          users_role
-  phone         String?    @db.VarChar(15)
-  profile_image String?    @db.VarChar(255)
-  is_active     Boolean?   @default(true)
-  last_login    DateTime?  @db.Timestamp(0)
-  created_at    DateTime?  @default(now()) @db.Timestamp(0)
-  updated_at    DateTime?  @default(now()) @db.Timestamp(0)
-  faculty       faculty[]
-  students      students[]
+  user_id        Int              @id @default(autoincrement())
+  full_name      String           @db.VarChar(100)
+  email          String           @unique(map: "email") @db.VarChar(100)
+  password       String           @db.VarChar(255)
+  role           users_role
+  phone          String?          @db.VarChar(15)
+  profile_image  String?          @db.VarChar(255)
+  is_active      Boolean?         @default(true)
+  last_login     DateTime?        @db.Timestamp(0)
+  created_at     DateTime?        @default(now()) @db.Timestamp(0)
+  updated_at     DateTime?        @default(now()) @db.Timestamp(0)
+  faculty        faculty[]
+  leave_requests leave_requests[]
+  students       students[]
 }
 
 model attendance {
@@ -231,20 +233,54 @@ model notices {
 }
 
 model assignments {
-  assignment_id Int       @id @default(autoincrement())
-  subject_id    Int
-  faculty_id    Int
-  title         String    @db.VarChar(150)
-  description   String?   @db.Text
-  due_date      DateTime  @db.Date
-  max_marks     Int?      @default(100)
-  created_at    DateTime? @default(now()) @db.Timestamp(0)
-  updated_at    DateTime? @default(now()) @db.Timestamp(0)
-  faculty       faculty   @relation(fields: [faculty_id], references: [faculty_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_assignment_faculty")
-  subjects      subjects  @relation(fields: [subject_id], references: [subject_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_assignment_subject")
+  assignment_id          Int                      @id @default(autoincrement())
+  subject_id             Int
+  faculty_id             Int
+  title                  String                   @db.VarChar(150)
+  description            String?                  @db.Text
+  due_date               DateTime                 @db.Date
+  max_marks              Int?                     @default(100)
+  created_at             DateTime?                @default(now()) @db.Timestamp(0)
+  updated_at             DateTime?                @default(now()) @db.Timestamp(0)
+  assignment_submissions assignment_submissions[]
+  faculty                faculty                  @relation(fields: [faculty_id], references: [faculty_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_assignment_faculty")
+  subjects               subjects                 @relation(fields: [subject_id], references: [subject_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_assignment_subject")
 
   @@index([faculty_id], map: "fk_assignment_faculty")
   @@index([subject_id], map: "fk_assignment_subject")
+}
+
+model assignment_submissions {
+  submission_id   Int                            @id @default(autoincrement())
+  assignment_id   Int
+  student_id      Int
+  submission_date DateTime?                      @default(now()) @db.DateTime(0)
+  file_url        String?                        @db.VarChar(255)
+  remarks         String?                        @db.VarChar(255)
+  marks_obtained  Decimal?                       @db.Decimal(5, 2)
+  status          assignment_submissions_status? @default(SUBMITTED)
+  created_at      DateTime?                      @default(now()) @db.Timestamp(0)
+  updated_at      DateTime?                      @default(now()) @db.Timestamp(0)
+  assignments     assignments                    @relation(fields: [assignment_id], references: [assignment_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_submission_assignment")
+  students        students                       @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_submission_student")
+
+  @@index([assignment_id], map: "fk_submission_assignment")
+  @@index([student_id], map: "fk_submission_student")
+}
+
+model leave_requests {
+  leave_id   Int                       @id @default(autoincrement())
+  user_id    Int
+  leave_type leave_requests_leave_type
+  start_date DateTime                  @db.Date
+  end_date   DateTime                  @db.Date
+  reason     String?                   @db.VarChar(255)
+  status     leave_requests_status?    @default(PENDING)
+  created_at DateTime?                 @default(now()) @db.Timestamp(0)
+  updated_at DateTime?                 @default(now()) @db.Timestamp(0)
+  users      users                     @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_leave_user")
+
+  @@index([user_id], map: "fk_leave_user")
 }
 
 enum users_role {
@@ -308,4 +344,23 @@ enum notices_priority {
   LOW
   MEDIUM
   HIGH
+}
+
+enum assignment_submissions_status {
+  SUBMITTED
+  EVALUATED
+  LATE
+}
+
+enum leave_requests_leave_type {
+  SICK
+  CASUAL
+  EMERGENCY
+  OTHER
+}
+
+enum leave_requests_status {
+  PENDING
+  APPROVED
+  REJECTED
 }

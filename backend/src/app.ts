@@ -13,6 +13,8 @@ import resultRoutes from "./routes/result.routes";
 import feeRoutes from "./routes/fee.routes";
 import noticeRoutes from "./routes/notice.routes";
 import assignmentRoutes from "./routes/assignment.routes";
+import assignmentSubmissionRoutes from "./routes/assignmentSubmission.routes";
+import leaveRoutes from "./routes/leave.routes";
 
 const app = express();
 
@@ -32,6 +34,8 @@ app.use("/results", resultRoutes);
 app.use("/fees", feeRoutes);
 app.use("/notices", noticeRoutes);
 app.use("/assignments", assignmentRoutes);
+app.use("/assignment-submissions", assignmentSubmissionRoutes);
+app.use("/leave-requests", leaveRoutes);
 
 app.get("/", (req, res) => {
     res.send("College AI Assistant Backend Running");

@@ -472,3 +472,84 @@ CREATE TABLE assignments (
         REFERENCES faculty(faculty_id)
 
 );
+
+-- ==============================================
+-- ASSIGNMENT SUBMISSIONS TABLE
+-- ==============================================
+
+CREATE TABLE assignment_submissions (
+
+    submission_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    assignment_id INT NOT NULL,
+
+    student_id INT NOT NULL,
+
+    submission_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    file_url VARCHAR(255),
+
+    remarks VARCHAR(255),
+
+    marks_obtained DECIMAL(5,2),
+
+    status ENUM(
+        'SUBMITTED',
+        'EVALUATED',
+        'LATE'
+    ) DEFAULT 'SUBMITTED',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_submission_assignment
+        FOREIGN KEY (assignment_id)
+        REFERENCES assignments(assignment_id),
+
+    CONSTRAINT fk_submission_student
+        FOREIGN KEY (student_id)
+        REFERENCES students(student_id)
+
+);
+
+-- ================================================
+-- LEAVE REQUEST TABLES
+-- ================================================
+
+CREATE TABLE leave_requests (
+
+    leave_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    user_id INT NOT NULL,
+
+    leave_type ENUM(
+        'SICK',
+        'CASUAL',
+        'EMERGENCY',
+        'OTHER'
+    ) NOT NULL,
+
+    start_date DATE NOT NULL,
+
+    end_date DATE NOT NULL,
+
+    reason VARCHAR(255),
+
+    status ENUM(
+        'PENDING',
+        'APPROVED',
+        'REJECTED'
+    ) DEFAULT 'PENDING',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_leave_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+
+);
