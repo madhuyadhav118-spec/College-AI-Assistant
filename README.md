@@ -836,3 +836,39 @@ Completed:
 
 Status:
 - Completed Successfully
+
+## ✅ Day 33 Completed
+
+### Assignment Submission Module
+
+Completed:
+
+- Assignment Submission Table
+- Prisma Assignment Submission Model
+- Assignment Submission Service
+- Assignment Submission Controller
+- Assignment Submission Routes
+- CRUD APIs
+- Role-Based Authorization
+- Thunder Client Testing
+
+Status:
+- Completed Successfully
+
+---
+
+### Leave Management Module
+
+Completed:
+
+- Leave Requests Table
+- Prisma Leave Requests Model
+- Leave Service
+- Leave Controller
+- Leave Routes
+- CRUD APIs
+- Role-Based Authorization
+- Thunder Client Testing
+
+Status:
+- Completed Successfully
