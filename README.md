@@ -872,3 +872,39 @@ Completed:
 
 Status:
 - Completed Successfully
+
+## ✅ Day 34 Completed
+
+### Events Management Module
+
+Completed:
+
+- Events Table
+- Prisma Events Model
+- Events Service
+- Events Controller
+- Events Routes
+- CRUD APIs
+- Role-Based Authorization
+- Thunder Client Testing
+
+Status:
+- Completed Successfully
+
+---
+
+### Library Management Module
+
+Completed:
+
+- Library Books Table
+- Prisma Library Books Model
+- Library Service
+- Library Controller
+- Library Routes
+- CRUD APIs
+- Role-Based Authorization
+- Thunder Client Testing
+
+Status:
+- Completed Successfully
