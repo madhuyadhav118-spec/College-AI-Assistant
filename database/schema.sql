@@ -553,3 +553,75 @@ CREATE TABLE leave_requests (
         REFERENCES users(user_id)
 
 );
+
+-- ===========================================
+-- EVENTS TABLES
+-- ===========================================
+
+CREATE TABLE events (
+
+    event_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    event_title VARCHAR(150) NOT NULL,
+
+    event_type ENUM(
+        'WORKSHOP',
+        'SEMINAR',
+        'HACKATHON',
+        'SPORTS',
+        'CULTURAL',
+        'PLACEMENT',
+        'OTHER'
+    ) NOT NULL,
+
+    description TEXT,
+
+    event_date DATE NOT NULL,
+
+    start_time TIME NOT NULL,
+
+    end_time TIME NOT NULL,
+
+    venue VARCHAR(100),
+
+    organizer VARCHAR(100),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+
+);
+
+-- ===============================================
+-- LIBRARY BOOKS TABLE
+-- ===============================================
+
+CREATE TABLE library_books (
+
+    book_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    book_title VARCHAR(200) NOT NULL,
+
+    author VARCHAR(150) NOT NULL,
+
+    isbn VARCHAR(30) UNIQUE,
+
+    category VARCHAR(100),
+
+    publisher VARCHAR(150),
+
+    publication_year INT,
+
+    total_copies INT NOT NULL,
+
+    available_copies INT NOT NULL,
+
+    shelf_location VARCHAR(100),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+
+);
