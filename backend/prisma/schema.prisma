@@ -103,6 +103,7 @@ model students {
   assignment_submissions assignment_submissions[]
   attendance             attendance[]
   fees                   fees[]
+  library_issues         library_issues[]
   results                results[]
   departments            departments?             @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_student_department")
   users                  users                    @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "students_ibfk_1")
@@ -298,18 +299,52 @@ model events {
 }
 
 model library_books {
-  book_id          Int       @id @default(autoincrement())
-  book_title       String    @db.VarChar(200)
-  author           String    @db.VarChar(150)
-  isbn             String?   @unique(map: "isbn") @db.VarChar(30)
-  category         String?   @db.VarChar(100)
-  publisher        String?   @db.VarChar(150)
+  book_id          Int              @id @default(autoincrement())
+  book_title       String           @db.VarChar(200)
+  author           String           @db.VarChar(150)
+  isbn             String?          @unique(map: "isbn") @db.VarChar(30)
+  category         String?          @db.VarChar(100)
+  publisher        String?          @db.VarChar(150)
   publication_year Int?
   total_copies     Int
   available_copies Int
-  shelf_location   String?   @db.VarChar(100)
-  created_at       DateTime? @default(now()) @db.Timestamp(0)
-  updated_at       DateTime? @default(now()) @db.Timestamp(0)
+  shelf_location   String?          @db.VarChar(100)
+  created_at       DateTime?        @default(now()) @db.Timestamp(0)
+  updated_at       DateTime?        @default(now()) @db.Timestamp(0)
+  library_issues   library_issues[]
+}
+
+model library_issues {
+  issue_id      Int                    @id @default(autoincrement())
+  book_id       Int
+  student_id    Int
+  issue_date    DateTime               @db.Date
+  due_date      DateTime               @db.Date
+  return_date   DateTime?              @db.Date
+  status        library_issues_status? @default(ISSUED)
+  fine_amount   Decimal?               @default(0.00) @db.Decimal(8, 2)
+  created_at    DateTime?              @default(now()) @db.Timestamp(0)
+  updated_at    DateTime?              @default(now()) @db.Timestamp(0)
+  library_books library_books          @relation(fields: [book_id], references: [book_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_issue_book")
+  students      students               @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_issue_student")
+
+  @@index([book_id], map: "fk_issue_book")
+  @@index([student_id], map: "fk_issue_student")
+}
+
+model placements {
+  placement_id         Int                @id @default(autoincrement())
+  company_name         String             @db.VarChar(150)
+  job_role             String             @db.VarChar(100)
+  eligibility          String?            @db.VarChar(100)
+  ctc                  Decimal?           @db.Decimal(10, 2)
+  job_location         String?            @db.VarChar(100)
+  drive_date           DateTime?          @db.Date
+  application_deadline DateTime?          @db.Date
+  description          String?            @db.Text
+  status               placements_status? @default(OPEN)
+  created_at           DateTime?          @default(now()) @db.Timestamp(0)
+  updated_at           DateTime?          @default(now()) @db.Timestamp(0)
 }
 
 enum users_role {
@@ -402,4 +437,15 @@ enum events_event_type {
   CULTURAL
   PLACEMENT
   OTHER
+}
+
+enum library_issues_status {
+  ISSUED
+  RETURNED
+  OVERDUE
+}
+
+enum placements_status {
+  OPEN
+  CLOSED
 }

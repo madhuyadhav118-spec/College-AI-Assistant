@@ -625,3 +625,79 @@ CREATE TABLE library_books (
     ON UPDATE CURRENT_TIMESTAMP
 
 );
+
+-- ================================================
+-- LIBRARY ISSUES LIKE (ISSUED ,RETURNED,OVERDUE )
+-- ================================================
+
+CREATE TABLE library_issues (
+
+    issue_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    book_id INT NOT NULL,
+
+    student_id INT NOT NULL,
+
+    issue_date DATE NOT NULL,
+
+    due_date DATE NOT NULL,
+
+    return_date DATE NULL,
+
+    status ENUM(
+        'ISSUED',
+        'RETURNED',
+        'OVERDUE'
+    ) DEFAULT 'ISSUED',
+
+    fine_amount DECIMAL(8,2) DEFAULT 0.00,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_issue_book
+        FOREIGN KEY(book_id)
+        REFERENCES library_books(book_id),
+
+    CONSTRAINT fk_issue_student
+        FOREIGN KEY(student_id)
+        REFERENCES students(student_id)
+
+);
+
+-- ===============================================
+-- PLACEMENTS TABLE
+-- ===============================================
+CREATE TABLE placements (
+
+    placement_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    company_name VARCHAR(150) NOT NULL,
+
+    job_role VARCHAR(100) NOT NULL,
+
+    eligibility VARCHAR(100),
+
+    ctc DECIMAL(10,2),
+
+    job_location VARCHAR(100),
+
+    drive_date DATE,
+
+    application_deadline DATE,
+
+    description TEXT,
+
+    status ENUM(
+        'OPEN',
+        'CLOSED'
+    ) DEFAULT 'OPEN',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+
+);
