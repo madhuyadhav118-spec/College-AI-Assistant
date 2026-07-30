@@ -701,3 +701,43 @@ CREATE TABLE placements (
     ON UPDATE CURRENT_TIMESTAMP
 
 );
+
+-- ================================================
+-- PLACEMENT APPLICATIONS TABLE
+-- ================================================
+
+CREATE TABLE placement_applications (
+
+    application_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    placement_id INT NOT NULL,
+
+    student_id INT NOT NULL,
+
+    resume_url VARCHAR(255),
+
+    applied_date DATE NOT NULL,
+
+    status ENUM(
+        'APPLIED',
+        'SHORTLISTED',
+        'SELECTED',
+        'REJECTED'
+    ) DEFAULT 'APPLIED',
+
+    remarks VARCHAR(255),
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_application_placement
+        FOREIGN KEY (placement_id)
+        REFERENCES placements(placement_id),
+
+    CONSTRAINT fk_application_student
+        FOREIGN KEY (student_id)
+        REFERENCES students(student_id)
+
+);

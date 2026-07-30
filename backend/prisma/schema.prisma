@@ -104,6 +104,7 @@ model students {
   attendance             attendance[]
   fees                   fees[]
   library_issues         library_issues[]
+  placement_applications placement_applications[]
   results                results[]
   departments            departments?             @relation(fields: [department_id], references: [department_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_student_department")
   users                  users                    @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "students_ibfk_1")
@@ -333,18 +334,36 @@ model library_issues {
 }
 
 model placements {
-  placement_id         Int                @id @default(autoincrement())
-  company_name         String             @db.VarChar(150)
-  job_role             String             @db.VarChar(100)
-  eligibility          String?            @db.VarChar(100)
-  ctc                  Decimal?           @db.Decimal(10, 2)
-  job_location         String?            @db.VarChar(100)
-  drive_date           DateTime?          @db.Date
-  application_deadline DateTime?          @db.Date
-  description          String?            @db.Text
-  status               placements_status? @default(OPEN)
-  created_at           DateTime?          @default(now()) @db.Timestamp(0)
-  updated_at           DateTime?          @default(now()) @db.Timestamp(0)
+  placement_id           Int                      @id @default(autoincrement())
+  company_name           String                   @db.VarChar(150)
+  job_role               String                   @db.VarChar(100)
+  eligibility            String?                  @db.VarChar(100)
+  ctc                    Decimal?                 @db.Decimal(10, 2)
+  job_location           String?                  @db.VarChar(100)
+  drive_date             DateTime?                @db.Date
+  application_deadline   DateTime?                @db.Date
+  description            String?                  @db.Text
+  status                 placements_status?       @default(OPEN)
+  created_at             DateTime?                @default(now()) @db.Timestamp(0)
+  updated_at             DateTime?                @default(now()) @db.Timestamp(0)
+  placement_applications placement_applications[]
+}
+
+model placement_applications {
+  application_id Int                            @id @default(autoincrement())
+  placement_id   Int
+  student_id     Int
+  resume_url     String?                        @db.VarChar(255)
+  applied_date   DateTime                       @db.Date
+  status         placement_applications_status? @default(APPLIED)
+  remarks        String?                        @db.VarChar(255)
+  created_at     DateTime?                      @default(now()) @db.Timestamp(0)
+  updated_at     DateTime?                      @default(now()) @db.Timestamp(0)
+  placements     placements                     @relation(fields: [placement_id], references: [placement_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_application_placement")
+  students       students                       @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_application_student")
+
+  @@index([placement_id], map: "fk_application_placement")
+  @@index([student_id], map: "fk_application_student")
 }
 
 enum users_role {
@@ -448,4 +467,11 @@ enum library_issues_status {
 enum placements_status {
   OPEN
   CLOSED
+}
+
+enum placement_applications_status {
+  APPLIED
+  SHORTLISTED
+  SELECTED
+  REJECTED
 }
