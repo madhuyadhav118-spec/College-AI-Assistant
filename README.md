@@ -944,3 +944,38 @@ Completed:
 
 Status:
 - Completed Successfully
+
+## ✅ Day 36 Completed
+
+### Placement Applications Module
+
+Completed:
+
+- Placement Applications Table
+- Prisma Model
+- Placement Application Service
+- Placement Application Controller
+- Placement Application Routes
+- CRUD APIs
+- Role-Based Authorization
+- Thunder Client API Testing
+
+Status:
+- Completed Successfully
+
+---
+
+### Dashboard APIs Module
+
+Completed:
+
+- Dashboard Service
+- Dashboard Controller
+- Dashboard Routes
+- Admin Dashboard API
+- JWT Authentication
+- Role-Based Authorization
+- Thunder Client API Testing
+
+Status:
+- Completed Successfully
