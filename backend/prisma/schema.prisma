@@ -102,6 +102,7 @@ model students {
   department_id          Int?
   assignment_submissions assignment_submissions[]
   attendance             attendance[]
+  feedback               feedback[]
   fees                   fees[]
   library_issues         library_issues[]
   placement_applications placement_applications[]
@@ -366,6 +367,47 @@ model placement_applications {
   @@index([student_id], map: "fk_application_student")
 }
 
+model hostel_rooms {
+  room_id     Int                    @id @default(autoincrement())
+  room_number String                 @db.VarChar(20)
+  hostel_name String                 @db.VarChar(100)
+  room_type   hostel_rooms_room_type
+  capacity    Int
+  occupied    Int?                   @default(0)
+  floor_no    Int?
+  status      hostel_rooms_status?   @default(AVAILABLE)
+  created_at  DateTime?              @default(now()) @db.Timestamp(0)
+  updated_at  DateTime?              @default(now()) @db.Timestamp(0)
+}
+
+model transport_buses {
+  bus_id          Int                     @id @default(autoincrement())
+  bus_number      String                  @unique(map: "bus_number") @db.VarChar(30)
+  route_name      String                  @db.VarChar(100)
+  driver_name     String                  @db.VarChar(100)
+  driver_phone    String?                 @db.VarChar(15)
+  capacity        Int
+  available_seats Int
+  status          transport_buses_status? @default(ACTIVE)
+  created_at      DateTime?               @default(now()) @db.Timestamp(0)
+  updated_at      DateTime?               @default(now()) @db.Timestamp(0)
+}
+
+model feedback {
+  feedback_id   Int                    @id @default(autoincrement())
+  student_id    Int
+  feedback_type feedback_feedback_type
+  subject       String                 @db.VarChar(150)
+  message       String                 @db.Text
+  rating        Int?
+  status        feedback_status?       @default(PENDING)
+  created_at    DateTime?              @default(now()) @db.Timestamp(0)
+  updated_at    DateTime?              @default(now()) @db.Timestamp(0)
+  students      students               @relation(fields: [student_id], references: [student_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_feedback_student")
+
+  @@index([student_id], map: "fk_feedback_student")
+}
+
 enum users_role {
   ADMIN
   FACULTY
@@ -474,4 +516,37 @@ enum placement_applications_status {
   SHORTLISTED
   SELECTED
   REJECTED
+}
+
+enum hostel_rooms_room_type {
+  SINGLE
+  DOUBLE
+  TRIPLE
+  FOUR_SHARING
+}
+
+enum hostel_rooms_status {
+  AVAILABLE
+  FULL
+  MAINTENANCE
+}
+
+enum transport_buses_status {
+  ACTIVE
+  INACTIVE
+  MAINTENANCE
+}
+
+enum feedback_feedback_type {
+  FACULTY
+  COURSE
+  HOSTEL
+  TRANSPORT
+  GENERAL
+}
+
+enum feedback_status {
+  PENDING
+  REVIEWED
+  RESOLVED
 }

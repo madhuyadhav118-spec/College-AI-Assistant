@@ -21,6 +21,9 @@ import libraryIssueRoutes from "./routes/libraryIssue.routes";
 import placementRoutes from "./routes/placement.routes";
 import placementApplicationRoutes from "./routes/placementApplication.routes";
 import dashboardRoutes from "./routes/dashboard.routes";
+import hostelRoutes from "./routes/hostel.routes";
+import transportRoutes from "./routes/transport.routes";
+import feedbackRoutes from "./routes/feedback.routes";
 
 const app = express();
 
@@ -48,6 +51,9 @@ app.use("/library-issues", libraryIssueRoutes);
 app.use("/placements", placementRoutes);
 app.use("/placement-applications", placementApplicationRoutes);
 app.use("/dashboard", dashboardRoutes);
+app.use("/hostel-rooms", hostelRoutes);
+app.use("/transport-buses", transportRoutes);
+app.use("/feedback", feedbackRoutes);
 
 app.get("/", (req, res) => {
     res.send("College AI Assistant Backend Running");

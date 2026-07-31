@@ -741,3 +741,115 @@ CREATE TABLE placement_applications (
         REFERENCES students(student_id)
 
 );
+
+-- =========================================
+-- HOSTELS TABLE
+-- =========================================
+
+CREATE TABLE hostel_rooms (
+
+    room_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    room_number VARCHAR(20) NOT NULL,
+
+    hostel_name VARCHAR(100) NOT NULL,
+
+    room_type ENUM(
+        'SINGLE',
+        'DOUBLE',
+        'TRIPLE',
+        'FOUR_SHARING'
+    ) NOT NULL,
+
+    capacity INT NOT NULL,
+
+    occupied INT DEFAULT 0,
+
+    floor_no INT,
+
+    status ENUM(
+        'AVAILABLE',
+        'FULL',
+        'MAINTENANCE'
+    ) DEFAULT 'AVAILABLE',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+
+);
+
+-- ==============================================
+-- TRANSPORTATION TABLE
+-- ==============================================
+
+CREATE TABLE transport_buses (
+
+    bus_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    bus_number VARCHAR(30) NOT NULL UNIQUE,
+
+    route_name VARCHAR(100) NOT NULL,
+
+    driver_name VARCHAR(100) NOT NULL,
+
+    driver_phone VARCHAR(15),
+
+    capacity INT NOT NULL,
+
+    available_seats INT NOT NULL,
+
+    status ENUM(
+        'ACTIVE',
+        'INACTIVE',
+        'MAINTENANCE'
+    ) DEFAULT 'ACTIVE',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP
+
+);
+
+-- =============================================
+-- FEEDBACK TABLE
+-- =============================================
+
+CREATE TABLE feedback (
+
+    feedback_id INT PRIMARY KEY AUTO_INCREMENT,
+
+    student_id INT NOT NULL,
+
+    feedback_type ENUM(
+        'FACULTY',
+        'COURSE',
+        'HOSTEL',
+        'TRANSPORT',
+        'GENERAL'
+    ) NOT NULL,
+
+    subject VARCHAR(150) NOT NULL,
+
+    message TEXT NOT NULL,
+
+    rating INT,
+
+    status ENUM(
+        'PENDING',
+        'REVIEWED',
+        'RESOLVED'
+    ) DEFAULT 'PENDING',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_feedback_student
+        FOREIGN KEY(student_id)
+        REFERENCES students(student_id)
+
+);
