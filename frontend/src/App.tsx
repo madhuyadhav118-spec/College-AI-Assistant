@@ -120,10 +120,10 @@
 // }
 
 // export default App
-import Login from "./pages/auth/Login";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-  return <Login />;
+  return <AppRoutes />;
 }
 
 export default App;
