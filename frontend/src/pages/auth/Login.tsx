@@ -1,9 +1,53 @@
+import { useState } from "react";
 import "./Login.css";
 import collegeLogo from "../../assets/images/college-logo.png";
+import { login } from "../../services/authService";
 
 function Login() {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleLogin = async (e: React.FormEvent) => {
+
+    e.preventDefault();
+
+    setLoading(true);
+    setError("");
+
+    try {
+
+      const response = await login(email, password);
+
+      console.log("Login Response:", response);
+
+      // Save JWT Token
+      localStorage.setItem("token", response.token);
+
+      alert("Login Successful!");
+
+      // Dashboard navigation will be added later
+
+    } catch (err: unknown) {
+
+      console.error(err);
+
+      setError("Invalid Email or Password");
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  };
+
   return (
     <div className="login-container">
+
       <div className="login-card">
 
         <img
@@ -20,13 +64,16 @@ function Login() {
           Please login to continue
         </p>
 
-        <form>
+        <form onSubmit={handleLogin}>
 
           <label>Email</label>
 
           <input
             type="email"
             placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
           <label>Password</label>
@@ -34,23 +81,46 @@ function Login() {
           <input
             type="password"
             placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
 
           <div className="remember-container">
 
             <div className="remember-me">
-              <input type="checkbox" id="remember" />
-              <label htmlFor="remember">Remember Me</label>
+
+              <input
+                type="checkbox"
+                id="remember"
+              />
+
+              <label htmlFor="remember">
+                Remember Me
+              </label>
+
             </div>
 
-            <a href="#" className="forgot-password">
+            <a
+              href="#"
+              className="forgot-password"
+            >
               Forgot Password?
             </a>
 
           </div>
 
-          <button type="submit">
-            Login
+          {error && (
+            <p className="error-message">
+              {error}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
           </button>
 
         </form>
@@ -60,6 +130,7 @@ function Login() {
         </p>
 
       </div>
+
     </div>
   );
 }

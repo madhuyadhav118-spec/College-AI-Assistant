@@ -218,3 +218,15 @@ button:hover{
     color:#777;
 
 }
+
+.error-message{
+    color:red;
+    font-size:14px;
+    margin-bottom:10px;
+    text-align:center;
+}
+
+button:disabled{
+    background:#90caf9;
+    cursor:not-allowed;
+}

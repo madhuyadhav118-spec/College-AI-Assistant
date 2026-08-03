@@ -24,10 +24,13 @@ import dashboardRoutes from "./routes/dashboard.routes";
 import hostelRoutes from "./routes/hostel.routes";
 import transportRoutes from "./routes/transport.routes";
 import feedbackRoutes from "./routes/feedback.routes";
+import cors from "cors";
 
 const app = express();
 
 const PORT = 5000;
+
+app.use(cors());
 app.use(express.json());
 
 app.use("/students", studentRoutes);
@@ -54,6 +57,7 @@ app.use("/dashboard", dashboardRoutes);
 app.use("/hostel-rooms", hostelRoutes);
 app.use("/transport-buses", transportRoutes);
 app.use("/feedback", feedbackRoutes);
+
 
 app.get("/", (req, res) => {
     res.send("College AI Assistant Backend Running");
