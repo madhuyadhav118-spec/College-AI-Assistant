@@ -1123,5 +1123,35 @@ Successfully created the frontend foundation for the College AI Assistant projec
 Successfully designed a professional Login Page for the College ERP System using React, TypeScript, and CSS. The application now has a clean, responsive, and user-friendly interface, ready for backend authentication integration.
 
 ---
+# Day 40 – Frontend Authentication Integration
 
+## Objective
+Connect the React Login UI with the Express.js Backend Authentication API.
+
+## Completed Tasks
+
+### Frontend
+- Configured Axios for API communication.
+- Created Authentication Service (authService.ts).
+- Connected Login page with Backend Login API.
+- Implemented asynchronous login using async/await.
+- Handled successful and failed login responses.
+- Stored JWT Token in Local Storage after successful login.
+- Successfully integrated React Frontend with Express Backend.
+
+### Backend
+- Enabled CORS to allow frontend requests.
+- Verified Login API functionality.
+- Tested authentication using Thunder Client.
+- Created a new user using the Register API.
+- Successfully authenticated the newly registered user.
+
+### Testing
+- Tested login using React UI.
+- Verified API response in Browser Console.
+- Verified JWT Token stored in Local Storage.
+- Confirmed successful frontend-backend communication.
+
+## Status
+✅ Frontend Authentication Integration Completed Successfully
 
