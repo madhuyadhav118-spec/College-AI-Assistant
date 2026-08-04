@@ -11,6 +11,8 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -53,6 +55,11 @@ function Login() {
       console.error(err);
 
       setError("Invalid Email or Password");
+      // console.error("Full Error:", err);
+
+      // console.log("Backend Response:", err.response);
+
+      //   setError("Invalid Email or Password");
 
     } finally {
 
@@ -95,13 +102,24 @@ function Login() {
 
           <label>Password</label>
 
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="password-container">
+
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </span>
+
+          </div>
 
           <div className="remember-container">
 

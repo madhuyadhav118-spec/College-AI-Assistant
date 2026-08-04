@@ -230,3 +230,45 @@ button:disabled{
     background:#90caf9;
     cursor:not-allowed;
 }
+
+/* Password Container */
+
+.password-container {
+
+    position: relative;
+
+    width: 100%;
+
+}
+
+/* Password Input */
+
+.password-container input {
+
+    width: 100%;
+
+    padding: 12px 45px 12px 12px;
+
+    box-sizing: border-box;
+
+}
+
+/* Eye Icon */
+
+.toggle-password {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    user-select: none;
+
+}
