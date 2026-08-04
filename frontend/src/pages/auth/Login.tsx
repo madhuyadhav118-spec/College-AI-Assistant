@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import collegeLogo from "../../assets/images/college-logo.png";
 import { login } from "../../services/authService";
 
 function Login() {
+
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,12 +27,26 @@ function Login() {
 
       console.log("Login Response:", response);
 
-      // Save JWT Token
+            // Save JWT Token
       localStorage.setItem("token", response.token);
 
-      alert("Login Successful!");
+      // Save User Information
+      localStorage.setItem("user", JSON.stringify(response.user));
 
-      // Dashboard navigation will be added later
+      const role = response.user.role;
+
+      if (role === "ADMIN") {
+        navigate("/admin");
+      }
+      else if (role === "FACULTY") {
+        navigate("/faculty");
+      }
+      else if (role === "STUDENT") {
+        navigate("/student");
+      }
+      else {
+        alert("Unknown User Role");
+      }
 
     } catch (err: unknown) {
 
