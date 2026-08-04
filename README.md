@@ -1155,3 +1155,30 @@ Connect the React Login UI with the Express.js Backend Authentication API.
 ## Status
 ✅ Frontend Authentication Integration Completed Successfully
 
+# Day 41 – Dashboard & Role-Based Navigation
+
+## Objective
+Build the first version of the ERP Dashboard after successful authentication.
+
+## Completed Tasks
+
+### Authentication
+- Implemented automatic role-based navigation.
+- Redirected users based on their role after login.
+- Stored user details in Local Storage.
+
+### Dashboard
+- Created Admin Dashboard.
+- Displayed logged-in user's information.
+- Designed professional dashboard layout.
+- Created reusable Header component.
+- Created reusable Sidebar component.
+
+### Session Management
+- Implemented Logout functionality.
+- Removed JWT token from Local Storage.
+- Removed user information from Local Storage.
+- Redirected user back to Login page.
+
+## Status
+✅ Role-Based Dashboard Completed Successfully
