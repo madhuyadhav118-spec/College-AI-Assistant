@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function Sidebar() {
 
   return (
@@ -17,7 +18,9 @@ function Sidebar() {
 
       <p>Dashboard</p>
 
-      <p>Students</p>
+      <Link to="/students">
+          Students
+      </Link>
 
       <p>Faculty</p>
 
