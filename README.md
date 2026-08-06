@@ -1254,3 +1254,50 @@ Next Step:
 - Edit Student
 - Delete Student
 - Add Student Form
+
+# Day 43 – Student View & Edit Module (Frontend)
+
+## ✅ Completed
+
+### Student View Page
+- Created Student Details page.
+- Added route:
+  - /admin/students/:id
+- Connected View button from Students table.
+- Displayed complete student information.
+- Loaded student data using Student ID.
+
+### Student Edit Page
+- Created EditStudent component.
+- Added route:
+  - /admin/students/edit/:id
+- Connected Edit button from Students table.
+- Loaded existing student details into editable form.
+- Added editable fields:
+  - Full Name
+  - Email
+  - Phone
+  - Roll Number
+  - Year
+  - Semester
+  - Status
+
+### Code Improvements
+- Fixed routing issues.
+- Fixed TypeScript errors.
+- Fixed null handling.
+- Improved form structure.
+- Prepared frontend for Update Student functionality.
+
+## Status
+
+✔ Student List
+✔ Search
+✔ View Student
+✔ Edit Student UI
+
+⏳ Remaining
+- Save Changes (PUT API)
+- Success notification
+- Cancel button
+- Redirect after update
