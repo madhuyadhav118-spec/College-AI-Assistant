@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAllStudents } from "../../services/studentService";
+import {
+    getAllStudents,
+    deleteStudent
+} from "../../services/studentService";
 import type { Student } from "../../types/student";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -33,6 +36,33 @@ function Students() {
         loadStudents();
 
     }, []);
+            const handleDelete = async (id: number) => {
+
+            const confirmDelete = window.confirm(
+                "Are you sure you want to delete this student?"
+            );
+
+            if (!confirmDelete) return;
+
+            try {
+
+                await deleteStudent(id.toString());
+
+                alert("Student deleted successfully!");
+
+                setStudents((prev) =>
+                    prev.filter((student) => student.student_id !== id)
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert("Failed to delete student.");
+
+            }
+
+        };
 
     return (
 
@@ -66,6 +96,7 @@ function Students() {
                 />
 
                 <button
+                    onClick={() => navigate("/admin/students/add")}
                     style={{
                         background: "#2563eb",
                         color: "white",
@@ -247,6 +278,7 @@ function Students() {
                                     </button>
                                     </Link>
                                     <button
+                                        onClick={() => handleDelete(student.student_id)}
                                         style={{
                                             background: "#ef4444",
                                             color: "white",

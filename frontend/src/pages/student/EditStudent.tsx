@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getStudentById } from "../../services/studentService";
+import { useNavigate, useParams } from "react-router-dom";
+import { getStudentById, updateStudent } from "../../services/studentService";
 
 function EditStudent() {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         full_name: "",
@@ -43,6 +44,25 @@ function EditStudent() {
     loadStudent();
 }, [id]);
 
+            const handleUpdate = async () => {
+
+            try {
+
+                await updateStudent(id!, formData);
+
+                alert("Student updated successfully!");
+
+                navigate("/students");
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert("Failed to update student.");
+
+            }
+
+        };
     return (
         <div
             style={{
@@ -202,6 +222,32 @@ function EditStudent() {
                     <option value="ACTIVE">ACTIVE</option>
                     <option value="INACTIVE">INACTIVE</option>
                 </select>
+            </div>
+
+            <div
+                style={{
+                    marginTop: "30px",
+                    display: "flex",
+                    justifyContent: "flex-end",
+                }}
+            >
+
+                <button
+                    onClick={handleUpdate}
+                    style={{
+                        background: "#2563eb",
+                        color: "white",
+                        border: "none",
+                        padding: "12px 25px",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                        fontWeight: "bold",
+                        fontSize: "16px"
+                    }}
+                >
+                    Save Changes
+                </button>
+
             </div>
         </div>
     );
