@@ -50,27 +50,74 @@ export const getOneFaculty = async (req: Request, res: Response) => {
 };
 
 // Create faculty
-export const addFaculty = async (req: Request, res: Response) => {
-    //console.log("ADD FACULTY API CALLED");
-   // console.log(req.body);
-    try {
+// export const addFaculty = async (req: Request, res: Response) => {
+//     //console.log("ADD FACULTY API CALLED");
+//    // console.log(req.body);
+//     try {
         
-        const faculty = await createFaculty(req.body);
+//         const faculty = await createFaculty(req.body);
 
-        res.status(201).json({
-            message: "Faculty created successfully",
-            faculty
-        });
+//         res.status(201).json({
+//             message: "Faculty created successfully",
+//             faculty
+//         });
 
-    } catch (error) {
-        console.error(error);
+//     } catch (error) {
+//         console.error("CREATE FACULTY ERROR:", error);
 
-        res.status(500).json({
-            message: "Failed to create faculty",
-           // error: error instanceof Error ? error.message : error
-        });
-    }
+//     res.status(500).json({
+//         message: "Failed to create faculty",
+//         error: error instanceof Error ? error.message : String(error)
+//         });
+//     }
+// };
+
+export const addFaculty = async (
+req: Request,
+res: Response
+) => {
+
+console.log("=================================");
+console.log("CREATE FACULTY REQUEST RECEIVED");
+console.log("Request Body:", req.body);
+console.log("=================================");
+
+try {
+
+    const faculty = await createFaculty(req.body);
+
+    console.log("FACULTY CREATED SUCCESSFULLY");
+
+    res.status(201).json({
+
+        message: "Faculty created successfully",
+
+        faculty
+
+    });
+
+} catch (error) {
+
+    console.error("=================================");
+    console.error("CREATE FACULTY ERROR:");
+    console.error(error);
+    console.error("=================================");
+
+    res.status(500).json({
+
+        message: "Failed to create faculty",
+
+        error: error instanceof Error
+            ? error.message
+            : String(error)
+
+    });
+
+}
+
+
 };
+
 
 // Update faculty
 export const editFaculty = async (req: Request, res: Response) => {

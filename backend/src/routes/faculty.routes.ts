@@ -1,4 +1,5 @@
 import express from "express";
+
 import {
     getFaculty,
     getOneFaculty,
@@ -12,16 +13,41 @@ import { authorize } from "../middleware/role.middleware";
 
 const router = express.Router();
 
-// All Faculty APIs require login
 router.use(authenticate);
 
-// View Faculty
-router.get("/", authorize("ADMIN", "FACULTY"), getFaculty);
-router.get("/:id", authorize("ADMIN", "FACULTY"), getOneFaculty);
+// Get all faculty
+router.get(
+    "/",
+    authorize("ADMIN", "FACULTY"),
+    getFaculty
+);
 
-// Only ADMIN can modify Faculty
-router.post("/", authorize("ADMIN"), addFaculty);
-router.put("/:id", authorize("ADMIN"), editFaculty);
-router.delete("/:id", authorize("ADMIN"), removeFaculty);
+// Get one faculty
+router.get(
+    "/:id",
+    authorize("ADMIN", "FACULTY"),
+    getOneFaculty
+);
+
+// Create faculty
+router.post(
+    "/",
+    authorize("ADMIN"),
+    addFaculty
+);
+
+// Update faculty
+router.put(
+    "/:id",
+    authorize("ADMIN"),
+    editFaculty
+);
+
+// Delete faculty
+router.delete(
+    "/:id",
+    authorize("ADMIN"),
+    removeFaculty
+);
 
 export default router;

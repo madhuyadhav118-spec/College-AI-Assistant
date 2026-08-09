@@ -12,6 +12,10 @@ import Departments from "../pages/departmentManagement/Departments";
 import DepartmentDetails from "../pages/departmentManagement/DepartmentDetails";
 import EditDepartment from "../pages/departmentManagement/EditDepartment";
 import AddDepartment from "../pages/departmentManagement/AddDepartment";
+import Faculty from "../pages/facultyManagement/Faculty";
+import FacultyDetails from "../pages/facultyManagement/FacultyDetails";
+import AddFaculty from "../pages/facultyManagement/AddFaculty";
+import EditFaculty from "../pages/facultyManagement/EditFaculty";
 
 function AppRoutes() {
     return (
@@ -39,6 +43,11 @@ function AppRoutes() {
                 <Route
                     path="/students"
                     element={<Students />}
+                />
+
+                <Route
+                    path="/faculty-management"
+                    element={<Faculty />}
                 />
 
                 <Route
@@ -75,6 +84,21 @@ function AppRoutes() {
                 <Route
                     path="/departments/add"
                     element={<AddDepartment />}
+                />
+
+                <Route
+                    path="/faculty-management/:id"
+                    element={<FacultyDetails />}
+                />
+
+                <Route
+                    path="/faculty-management/add"
+                    element={<AddFaculty />}
+                />
+
+                <Route
+                    path="/faculty-management/edit/:id"
+                    element={<EditFaculty />}
                 />
 
             </Routes>

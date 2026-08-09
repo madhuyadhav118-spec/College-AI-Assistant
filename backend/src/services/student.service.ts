@@ -2,137 +2,202 @@ import prisma from "../config/prisma";
 
 // Get all students
 export const getAllStudents = async () => {
-    return await prisma.students.findMany({
-        include: {
-            users: true,
-            departments: true
-        }
-    });
+
+
+return await prisma.students.findMany({
+
+    include: {
+        users: true,
+        departments: true
+    }
+
+});
+
+
 };
 
 // Get one student
-export const getStudentById = async (id: number) => {
-    return await prisma.students.findUnique({
-        where: {
-            student_id: id
-        },
-        include: {
-            users: true,
-            departments: true
-        }
-    });
+export const getStudentById = async (
+id: number
+) => {
+
+
+return await prisma.students.findUnique({
+
+    where: {
+        student_id: id
+    },
+
+    include: {
+        users: true,
+        departments: true
+    }
+
+});
+
+
 };
 
 // Create a new student
-export const createStudent = async (data: any) => {
+export const createStudent = async (
+data: any
+) => {
 
-    // Step 1: Create User
-    const user = await prisma.users.create({
 
-        data: {
+// Step 1: Create User
+const user = await prisma.users.create({
 
-            full_name: data.full_name,
-            email: data.email,
+    data: {
 
-            // Temporary password
-            password: "Student@123",
+        full_name: data.full_name,
 
-            role: "STUDENT",
+        email: data.email,
 
-            phone: data.phone
+        // Temporary password
+        password: "Student@123",
 
-        }
+        role: "STUDENT",
 
-    });
+        phone: data.phone
 
-    const department = await prisma.departments.findFirst({
-        where: {
-            department_code: data.department
-        }
-    });
+    }
 
-    // Step 2: Create Student
-    return await prisma.students.create({
+});
 
-        data: {
 
-            user_id: user.user_id,
+// Find department
+const department = await prisma.departments.findFirst({
 
-            roll_number: data.roll_number,
+    where: {
 
-            department: data.department,
+        department_code: data.department
 
-            department_id: department?.department_id ?? null,
+    }
 
-            year: data.year,
+});
 
-            semester: data.semester,
 
-            status: data.status
+// Step 2: Create Student
+return await prisma.students.create({
 
-        },
+    data: {
 
-        include: {
+        user_id: user.user_id,
 
-            users: true,
-            departments: true
+        roll_number: data.roll_number,
 
-        }
+        department: data.department,
 
-    });
+        department_id:
+            department?.department_id ?? null,
+
+        year: Number(data.year),
+
+        semester: Number(data.semester),
+
+        status: data.status || "ACTIVE"
+
+    },
+
+    include: {
+
+        users: true,
+
+        departments: true
+
+    }
+
+});
+
 
 };
 
+// Update student
+export const updateStudent = async (
+id: number,
+data: any
+) => {
 
-export const updateStudent = async (id: number, data: any) => {
 
-    const student = await prisma.students.findUnique({
-        where: {
-            student_id: id
-        }
-    });
+// Check whether student exists
+const student = await prisma.students.findUnique({
 
-    if (!student) {
-        throw new Error("Student not found");
+    where: {
+        student_id: id
     }
 
-    return await prisma.students.update({
+});
 
-        where: {
-            student_id: id
-        },
 
-        data: {
+if (!student) {
 
-            roll_number: data.roll_number,
-            year: data.year,
-            semester: data.semester,
-            status: data.status,
+    throw new Error("Student not found");
 
-            users: {
-                update: {
-                    full_name: data.full_name,
-                    email: data.email,
-                    phone: data.phone
-                }
+}
+
+
+// Update student and user
+return await prisma.students.update({
+
+    where: {
+
+        student_id: id
+
+    },
+
+    data: {
+
+        roll_number: data.roll_number,
+
+        year: Number(data.year),
+
+        semester: Number(data.semester),
+
+        status: data.status,
+
+        users: {
+
+            update: {
+
+                full_name: data.full_name,
+
+                email: data.email,
+
+                phone: data.phone
+
             }
 
-        },
-
-        include: {
-            users: true,
-            departments: true
         }
 
-    });
+    },
+
+    include: {
+
+        users: true,
+
+        departments: true
+
+    }
+
+});
+
 
 };
 
 // Delete a student
-export const deleteStudent = async (id: number) => {
-    return await prisma.students.delete({
-        where: {
-            student_id: id
-        }
-    });
+export const deleteStudent = async (
+id: number
+) => {
+
+
+return await prisma.students.delete({
+
+    where: {
+
+        student_id: id
+
+    }
+
+});
+
 };
