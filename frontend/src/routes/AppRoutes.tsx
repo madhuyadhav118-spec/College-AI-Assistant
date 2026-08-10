@@ -16,6 +16,10 @@ import Faculty from "../pages/facultyManagement/Faculty";
 import FacultyDetails from "../pages/facultyManagement/FacultyDetails";
 import AddFaculty from "../pages/facultyManagement/AddFaculty";
 import EditFaculty from "../pages/facultyManagement/EditFaculty";
+import Courses from "../pages/courseManagement/Courses";
+import AddCourse from "../pages/courseManagement/AddCourse";
+import CourseDetails from "../pages/courseManagement/CourseDetails";
+import EditCourse from "../pages/courseManagement/EditCourse";
 
 function AppRoutes() {
     return (
@@ -99,6 +103,26 @@ function AppRoutes() {
                 <Route
                     path="/faculty-management/edit/:id"
                     element={<EditFaculty />}
+                />
+
+                <Route
+                    path="/course-management"
+                    element={<Courses />}
+                />
+
+                <Route
+                    path="/course-management/add"
+                    element={<AddCourse />}
+                />
+
+                <Route
+                    path="/course-management/:id"
+                    element={<CourseDetails />}
+                />
+
+                <Route
+                    path="/course-management/edit/:id"
+                    element={<EditCourse />}
                 />
 
             </Routes>
