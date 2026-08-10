@@ -20,6 +20,10 @@ import Courses from "../pages/courseManagement/Courses";
 import AddCourse from "../pages/courseManagement/AddCourse";
 import CourseDetails from "../pages/courseManagement/CourseDetails";
 import EditCourse from "../pages/courseManagement/EditCourse";
+import Subjects from "../pages/subjectManagement/Subjects";
+import AddSubject from "../pages/subjectManagement/AddSubject";
+import SubjectDetails from "../pages/subjectManagement/SubjectDetails";
+import EditSubject from "../pages/subjectManagement/EditSubject";
 
 function AppRoutes() {
     return (
@@ -123,6 +127,26 @@ function AppRoutes() {
                 <Route
                     path="/course-management/edit/:id"
                     element={<EditCourse />}
+                />
+
+                <Route
+                    path="/subject-management"
+                    element={<Subjects />}
+                />
+
+                <Route
+                    path="/subject-management/add"
+                    element={<AddSubject />}
+                />
+
+                <Route
+                    path="/subject-management/:id"
+                    element={<SubjectDetails />}
+                />
+
+                <Route
+                    path="/subject-management/edit/:id"
+                    element={<EditSubject />}
                 />
 
             </Routes>
