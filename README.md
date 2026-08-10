@@ -1519,13 +1519,13 @@ The Department Management module is now fully functional with CRUD operations, w
 * Move to the next pending module.
 * Continue implementing the remaining modules following the same List → Add → View → Edit → Delete pattern.
 
-# Day 46 – Course Management Module
+# Day 46 – Course And Subject Management Module
 
 ## ✅ Completed
 
 Today, the Course Management module was completed following the same CRUD structure used for Departments and Faculty.
 
-### Course Type
+### Course and Subject Type
 
 Created:
 
@@ -1570,7 +1570,7 @@ Implemented:
 * Delete button
 * Add Course button
 
-### Add Course
+### Add Course and Subject
 
 Created:
 
@@ -1586,7 +1586,7 @@ Implemented:
 * Success message
 * Navigation back to Course Management
 
-### View Course
+### View Course and Subject
 
 Created:
 
@@ -1602,7 +1602,7 @@ Implemented:
 * Updated date
 * Back navigation
 
-### Edit Course
+### Edit Course and Subject
 
 Created:
 
@@ -1616,7 +1616,7 @@ Implemented:
 * Success message
 * Navigation back to Course Management
 
-### Delete Course
+### Delete Course and Subject
 
 Implemented:
 
@@ -1649,7 +1649,7 @@ The following operations were successfully tested:
 
 ## 🎯 Day 46 Status
 
-**Course Management Module – COMPLETED ✅**
+**Course And Subject Management Module – COMPLETED ✅**
 
 ## Next
 
