@@ -1518,3 +1518,141 @@ The Department Management module is now fully functional with CRUD operations, w
 
 * Move to the next pending module.
 * Continue implementing the remaining modules following the same List → Add → View → Edit → Delete pattern.
+
+# Day 46 – Course Management Module
+
+## ✅ Completed
+
+Today, the Course Management module was completed following the same CRUD structure used for Departments and Faculty.
+
+### Course Type
+
+Created:
+
+`src/types/course.ts`
+
+Added:
+
+* `Course` interface
+* `CourseFormData` interface
+
+### Course Service
+
+Created:
+
+`src/services/courseService.ts`
+
+Implemented:
+
+* Get all courses
+* Get course by ID
+* Add course
+* Update course
+* Delete course
+
+### Course List
+
+Created:
+
+`src/pages/courseManagement/Courses.tsx`
+
+Implemented:
+
+* Course table
+* Course ID
+* Course Name
+* Course Code
+* Duration
+* Total course count
+* Course search
+* View button
+* Edit button
+* Delete button
+* Add Course button
+
+### Add Course
+
+Created:
+
+`src/pages/courseManagement/AddCourse.tsx`
+
+Implemented:
+
+* Course name
+* Course code
+* Duration
+* Form validation
+* Add Course API
+* Success message
+* Navigation back to Course Management
+
+### View Course
+
+Created:
+
+`src/pages/courseManagement/CourseDetails.tsx`
+
+Implemented:
+
+* Course ID
+* Course name
+* Course code
+* Duration
+* Created date
+* Updated date
+* Back navigation
+
+### Edit Course
+
+Created:
+
+`src/pages/courseManagement/EditCourse.tsx`
+
+Implemented:
+
+* Loading existing course details
+* Editing course information
+* Updating course through API
+* Success message
+* Navigation back to Course Management
+
+### Delete Course
+
+Implemented:
+
+* Delete confirmation
+* Delete Course API
+* Success message
+* Course list refresh after deletion
+
+### Routing
+
+Added Course Management routes:
+
+* `/course-management`
+* `/course-management/add`
+* `/course-management/:id`
+* `/course-management/edit/:id`
+
+## 🧪 Testing Completed
+
+The following operations were successfully tested:
+
+* Course List ✅
+* Course Search ✅
+* Add Course ✅
+* View Course ✅
+* Edit Course ✅
+* Delete Course ✅
+* Database persistence verified ✅
+* Backend API connection verified ✅
+
+## 🎯 Day 46 Status
+
+**Course Management Module – COMPLETED ✅**
+
+## Next
+
+Proceed to the next pending ERP module using the same pattern:
+
+**List → Search → Add → View → Edit → Delete**
