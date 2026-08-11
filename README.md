@@ -1656,3 +1656,62 @@ The following operations were successfully tested:
 Proceed to the next pending ERP module using the same pattern:
 
 **List → Search → Add → View → Edit → Delete**
+
+## ✅  Day 47 – Timetable Management Module
+
+#### Completed Features
+
+* Created the Timetable Management frontend module.
+* Created the timetable TypeScript interfaces and form types.
+* Implemented timetable listing.
+* Implemented Add Timetable functionality.
+* Implemented View Timetable Details.
+* Implemented Edit Timetable functionality.
+* Implemented Delete Timetable functionality.
+* Integrated frontend with timetable CRUD APIs.
+* Connected timetable with:
+
+  * Departments
+  * Subjects
+  * Faculty
+* Implemented day-of-week selection.
+* Implemented start-time and end-time handling.
+* Added backend time conversion for Prisma `DateTime` fields mapped to MySQL `TIME`.
+* Added timetable details including subject, faculty, department, day, time and room number.
+* Tested complete timetable CRUD operations successfully.
+
+#### Timetable CRUD APIs
+
+| Operation           | Method | Endpoint         |
+| ------------------- | ------ | ---------------- |
+| Get all timetables  | GET    | `/timetable`     |
+| Get timetable by ID | GET    | `/timetable/:id` |
+| Create timetable    | POST   | `/timetable`     |
+| Update timetable    | PUT    | `/timetable/:id` |
+| Delete timetable    | DELETE | `/timetable/:id` |
+
+#### Frontend Pages
+
+```text
+frontend/src/pages/timetableManagement/
+├── Timetables.tsx
+├── AddTimetable.tsx
+├── TimetableDetails.tsx
+└── EditTimetable.tsx
+```
+
+#### Frontend Service
+
+```text
+frontend/src/services/timetableService.ts
+```
+
+#### Backend Service
+
+```text
+backend/src/services/timetable.service.ts
+```
+
+#### Day 47 Status
+
+**Completed successfully ✅**
