@@ -24,6 +24,10 @@ import Subjects from "../pages/subjectManagement/Subjects";
 import AddSubject from "../pages/subjectManagement/AddSubject";
 import SubjectDetails from "../pages/subjectManagement/SubjectDetails";
 import EditSubject from "../pages/subjectManagement/EditSubject";
+import Timetables from "../pages/timetableManagement/Timetables";
+import AddTimetable from "../pages/timetableManagement/AddTimetable";
+import TimetableDetails from "../pages/timetableManagement/TimetableDetails";
+import EditTimetable from "../pages/timetableManagement/EditTimetable";
 
 function AppRoutes() {
     return (
@@ -147,6 +151,26 @@ function AppRoutes() {
                 <Route
                     path="/subject-management/edit/:id"
                     element={<EditSubject />}
+                />
+
+                <Route
+                    path="/timetable-management"
+                    element={<Timetables />}
+                />
+
+                <Route
+                    path="/timetable-management/add"
+                    element={<AddTimetable />}
+                />
+
+                <Route
+                    path="/timetable-management/view/:id"
+                    element={<TimetableDetails />}
+                />
+
+                <Route
+                    path="/timetable-management/edit/:id"
+                    element={<EditTimetable />}
                 />
 
             </Routes>

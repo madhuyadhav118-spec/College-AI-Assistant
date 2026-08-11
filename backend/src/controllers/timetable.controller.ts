@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import {
-    getAllTimetable,
+    getAllTimetables,
     getTimetableById,
     createTimetable,
     updateTimetable,
@@ -11,7 +11,7 @@ import {
 export const getTimetable = async (req: Request, res: Response) => {
     try {
 
-        const timetable = await getAllTimetable();
+        const timetable = await getAllTimetables();
 
         res.status(200).json(timetable);
 
