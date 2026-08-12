@@ -28,6 +28,10 @@ import Timetables from "../pages/timetableManagement/Timetables";
 import AddTimetable from "../pages/timetableManagement/AddTimetable";
 import TimetableDetails from "../pages/timetableManagement/TimetableDetails";
 import EditTimetable from "../pages/timetableManagement/EditTimetable";
+import Attendances from "../pages/attendanceManagement/Attendances";
+import AddAttendance from "../pages/attendanceManagement/AddAttendance";
+import AttendanceDetails from "../pages/attendanceManagement/AttendanceDetails";
+import EditAttendance from "../pages/attendanceManagement/EditAttendance";
 
 function AppRoutes() {
     return (
@@ -173,6 +177,25 @@ function AppRoutes() {
                     element={<EditTimetable />}
                 />
 
+                <Route
+                    path="/attendance-management"
+                    element={<Attendances />}
+                />
+
+                <Route
+                    path="/attendance-management/add"
+                    element={<AddAttendance />}
+                />
+
+                <Route
+                    path="/attendance-management/view/:id"
+                    element={<AttendanceDetails />}
+                />
+
+                <Route
+                    path="/attendance-management/edit/:id"
+                    element={<EditAttendance />}
+                />
             </Routes>
 
         </BrowserRouter>
