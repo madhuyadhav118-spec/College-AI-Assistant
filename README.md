@@ -1715,3 +1715,45 @@ backend/src/services/timetable.service.ts
 #### Day 47 Status
 
 **Completed successfully ✅**
+
+
+## ✅  Day 48 Attendance Management Module
+
+## Overview
+
+The Attendance Management Module is used to manage student attendance records.
+
+## Features
+
+* Add attendance
+* View attendance
+* Edit attendance
+* Delete attendance
+* Search attendance
+* Track attendance status
+* Store attendance remarks
+
+## Attendance Status
+
+* `PRESENT`
+* `ABSENT`
+* `LATE`
+
+## API Endpoints
+
+| Method | Endpoint          | Description          |
+| ------ | ----------------- | -------------------- |
+| GET    | `/attendance`     | Get all attendance   |
+| GET    | `/attendance/:id` | Get attendance by ID |
+| POST   | `/attendance`     | Add attendance       |
+| PUT    | `/attendance/:id` | Update attendance    |
+| DELETE | `/attendance/:id` | Delete attendance    |
+
+## Frontend Pages
+
+* `Attendances.tsx` — Attendance list
+* `AddAttendance.tsx` — Add attendance
+* `AttendanceDetails.tsx` — View attendance
+* `EditAttendance.tsx` — Edit attendance
+
+**Day 48 Attendance Management Module — Completed ✅**
