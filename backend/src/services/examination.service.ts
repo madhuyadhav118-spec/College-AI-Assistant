@@ -20,13 +20,24 @@ export const getExaminationById = async (id: number) => {
         }
     });
 };
-
 // Create examination
 export const createExamination = async (data: any) => {
+
+    const formattedData = {
+        ...data,
+
+        // Convert YYYY-MM-DD into a valid ISO DateTime
+        exam_date: new Date(
+            `${data.exam_date}T00:00:00.000Z`
+        )
+    };
+
     return await prisma.examinations.create({
-        data
+        data: formattedData
     });
 };
+
+
 
 // Update examination
 export const updateExamination = async (id: number, data: any) => {

@@ -32,6 +32,10 @@ import Attendances from "../pages/attendanceManagement/Attendances";
 import AddAttendance from "../pages/attendanceManagement/AddAttendance";
 import AttendanceDetails from "../pages/attendanceManagement/AttendanceDetails";
 import EditAttendance from "../pages/attendanceManagement/EditAttendance";
+import Examinations from "../pages/examinationManagement/Examinations";
+import AddExamination from "../pages/examinationManagement/AddExamination";
+import ExaminationDetails from "../pages/examinationManagement/ExaminationDetails";
+import EditExamination from "../pages/examinationManagement/EditExamination";
 
 function AppRoutes() {
     return (
@@ -195,6 +199,26 @@ function AppRoutes() {
                 <Route
                     path="/attendance-management/edit/:id"
                     element={<EditAttendance />}
+                />
+
+                <Route
+                    path="/examination-management"
+                    element={<Examinations />}
+                />
+
+                <Route
+                    path="/examination-management/add"
+                    element={<AddExamination />}
+                />
+
+                <Route
+                    path="/examination-management/view/:id"
+                    element={<ExaminationDetails />}
+                />
+
+                <Route
+                    path="/examination-management/edit/:id"
+                    element={<EditExamination />}
                 />
             </Routes>
 
