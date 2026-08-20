@@ -1796,3 +1796,30 @@ The Attendance Management Module is used to manage student attendance records.
 ## Day 49 Status
 
 **Examination Module – Completed ✅**
+
+# Day 50 – Results Management Module
+
+## Completed
+
+* Created Results Management frontend.
+* Displayed all results in a table.
+* Added Add Result form.
+* Added View Result page.
+* Added Edit Result page.
+* Added Delete Result with confirmation.
+* Connected frontend with existing Results APIs.
+* Fixed TypeScript issues (`subject_id`, `ResultFormData`).
+* Fixed Prisma relation handling for students, subjects, and examinations.
+* Added React Router integration.
+
+## Result Fields
+
+* Student ID
+* Subject ID
+* Exam ID
+* Marks Obtained
+* Grade
+
+## Day 50 Status
+
+**Results Management Module – Completed ✅**
