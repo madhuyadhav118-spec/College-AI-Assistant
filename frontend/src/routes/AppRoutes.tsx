@@ -36,6 +36,10 @@ import Examinations from "../pages/examinationManagement/Examinations";
 import AddExamination from "../pages/examinationManagement/AddExamination";
 import ExaminationDetails from "../pages/examinationManagement/ExaminationDetails";
 import EditExamination from "../pages/examinationManagement/EditExamination";
+import Results from "../pages/resultManagement/Results";
+import AddResult from "../pages/resultManagement/AddResult";
+import ResultDetails from "../pages/resultManagement/ResultDetails";
+import EditResult from "../pages/resultManagement/EditResult";
 
 function AppRoutes() {
     return (
@@ -219,6 +223,26 @@ function AppRoutes() {
                 <Route
                     path="/examination-management/edit/:id"
                     element={<EditExamination />}
+                />
+
+                <Route
+                    path="/result-management"
+                    element={<Results />}
+                />
+
+                <Route
+                    path="/result-management/add"
+                    element={<AddResult />}
+                />
+
+                <Route
+                    path="/result-management/view/:id"
+                    element={<ResultDetails />}
+                />
+
+                <Route
+                    path="/result-management/edit/:id"
+                    element={<EditResult />}
                 />
             </Routes>
 

@@ -28,10 +28,43 @@ export const getResultById = async (id: number) => {
 };
 
 // Create result
+// Create result
 export const createResult = async (data: any) => {
+
     return await prisma.results.create({
-        data
+
+        data: {
+
+            marks_obtained: data.marks_obtained,
+
+            grade: data.grade,
+
+            remarks: data.remarks || null,
+
+            result_status: data.result_status || "PASS",
+
+            students: {
+                connect: {
+                    student_id: data.student_id
+                }
+            },
+
+            subjects: {
+                connect: {
+                    subject_id: data.subject_id
+                }
+            },
+
+            examinations: {
+                connect: {
+                    exam_id: data.exam_id
+                }
+            }
+
+        }
+
     });
+
 };
 
 // Update result
