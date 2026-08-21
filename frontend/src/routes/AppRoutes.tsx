@@ -40,6 +40,14 @@ import Results from "../pages/resultManagement/Results";
 import AddResult from "../pages/resultManagement/AddResult";
 import ResultDetails from "../pages/resultManagement/ResultDetails";
 import EditResult from "../pages/resultManagement/EditResult";
+import Fees from "../pages/feeManagement/Fees";
+import AddFee from "../pages/feeManagement/AddFee";
+import FeeDetails from "../pages/feeManagement/FeeDetails";
+import EditFee from "../pages/feeManagement/EditFee";
+import Notices from "../pages/noticeManagement/Notices";
+import AddNotice from "../pages/noticeManagement/AddNotice";
+import NoticeDetails from "../pages/noticeManagement/NoticeDetails";
+import EditNotice from "../pages/noticeManagement/EditNotice";
 
 function AppRoutes() {
     return (
@@ -243,6 +251,42 @@ function AppRoutes() {
                 <Route
                     path="/result-management/edit/:id"
                     element={<EditResult />}
+                />
+
+                <Route
+                    path="/fee-management"
+                    element={<Fees />}
+                />
+
+                <Route
+                    path="/fee-management/add"
+                    element={<AddFee />}
+                />
+
+                <Route
+                    path="/fee-management/view/:id"
+                    element={<FeeDetails />}
+                />
+
+                <Route
+                    path="/fee-management/edit/:id"
+                    element={<EditFee />}
+                />
+
+                <Route 
+                    path="/notice-management" element={<Notices />} 
+                />
+
+                <Route 
+                    path="/notice-management/add" element={<AddNotice />} 
+                />
+
+                <Route 
+                    path="/notice-management/view/:id" element={<NoticeDetails />} 
+                />
+
+                <Route 
+                    path="/notice-management/edit/:id" element={<EditNotice />} 
                 />
             </Routes>
 
