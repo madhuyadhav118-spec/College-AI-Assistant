@@ -1823,3 +1823,48 @@ The Attendance Management Module is used to manage student attendance records.
 ## Day 50 Status
 
 **Results Management Module – Completed ✅**
+
+# Day 51 – Fee & Notice Management Modules
+
+## Completed
+
+### Fee Management
+
+* Created Fee Management frontend.
+* Displayed fee records in a table.
+* Added Add Fee form.
+* Added View Fee page.
+* Added Edit Fee page.
+* Added Delete Fee with confirmation.
+* Connected frontend with existing backend APIs.
+* Fixed Prisma relation handling for `student_id`.
+* Formatted currency and dates for better readability.
+
+### Notice Management
+
+* Created Notice Management frontend.
+* Displayed notices in a table.
+* Added Add Notice form.
+* Added View Notice page.
+* Added Edit Notice page.
+* Added Delete Notice with confirmation.
+* Connected frontend with backend APIs.
+* Fixed Prisma field mapping:
+
+  * `content → description`
+  * `target_audience → audience`
+* Converted Prisma fields back to frontend field names for consistency.
+
+## Features Completed
+
+* Fee Management CRUD
+* Notice Management CRUD
+* React Router integration
+* API integration
+* Error handling
+* Date formatting
+* Currency formatting
+
+## Day 51 Status
+
+**Fee Management & Notice Management Modules – Completed ✅**
